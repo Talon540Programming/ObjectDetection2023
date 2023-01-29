@@ -1,6 +1,7 @@
-train: ../train/images
-val: ../valid/images
-test: ../test/images
+path: ../yolov5-192pDataset
+train: train/images
+val: valid/images
+test: test/images
 
 nc: 2
 names: ['cone', 'cube']
