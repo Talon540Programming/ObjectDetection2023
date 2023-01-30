@@ -1,6 +1,6 @@
 import cv2, socket, numpy, pickle
 s=socket.socket(socket.AF_INET , socket.SOCK_DGRAM)
-ip="10.85.1.59"
+ip="10.171.50.31"
 port=6666
 s.bind((ip,port))
 while True:
@@ -12,6 +12,6 @@ while True:
     print(type(data))
     data = cv2.imdecode(data, cv2.IMREAD_COLOR)
     cv2.imshow('server', data) #to open image
-    if cv2.waitKey(10) == 13:
+    if cv2.waitKey(10) == 'q':
         break
 cv2.destroyAllWindows()

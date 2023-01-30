@@ -145,20 +145,30 @@ if __name__ == "__main__":
             else:
                 full_image, net_image, pad = get_image_tensor(image, input_size[0])
                 pred = model.forward(net_image)
-                print(pred)
+                # print(pred)
                 
-                model.process_predictions(pred[0], full_image, pad)
+                image = cv2.resize(image, (224, 224))
                 try:
-                    coords = list(pred[0][0][0:4])
-                    print("List 0 0 04", coords)
-                    box = model.get_scaled_coords([coords[0:3], coords[2:]], np.array(image), (0,0))
-                    print("box", box)
+                    # coords = list(pred[0][0][0:4])
+                    # coords = model.get_corner_coords(coords)
+                    # print(coords)
+                    model.process_predictions(pred[0], full_image, pad)
+                    coords = [pred[0][0:3], pred[0][2:]]
+                    # image = cv2.rectangle(image, coords[0], coords[1], 10)
+
                 except Exception as e:
                     print("nothing detected", e)
-                
+
+                ret, buffer = cv2.imencode(".jpg",image,[int(cv2.IMWRITE_JPEG_QUALITY),30])
+                x_as_bytes = pickle.dumps(buffer)
+                s.sendto((x_as_bytes),(server_ip,server_port))
+
+                if cv2.waitKey(10)=='q':
+                    break
+
                 tinference, tnms = model.get_last_inference_time()
                 logger.info("Frame done in {}".format(tinference+tnms))
           except KeyboardInterrupt:
             break
-          
+        cv2.destroyAllWindows()
         cam.release()
