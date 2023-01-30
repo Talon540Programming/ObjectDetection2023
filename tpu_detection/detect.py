@@ -148,7 +148,7 @@ if __name__ == "__main__":
                 print(pred)
                 
                 model.process_predictions(pred[0], full_image, pad)
-                print(pred[0][0][:4])
+                print(pred.shape)
 
                 # box = model.get_scaled_coords(pred[0], np.array(image), (0,0))
                 # print(box)
