@@ -148,9 +148,10 @@ if __name__ == "__main__":
                 print(pred)
                 
                 model.process_predictions(pred[0], full_image, pad)
+                print(pred[0][:4])
 
-                box = model.get_scaled_coords(pred[0][:3], np.array(image), (0,0))
-                print(box)
+                # box = model.get_scaled_coords(pred[0], np.array(image), (0,0))
+                # print(box)
                 
                 tinference, tnms = model.get_last_inference_time()
                 logger.info("Frame done in {}".format(tinference+tnms))
