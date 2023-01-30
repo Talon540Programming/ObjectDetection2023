@@ -3,6 +3,7 @@ import socket
 import struct
 import time
 import picamera
+import cv2
 
 client_socket = socket.socket()
 
