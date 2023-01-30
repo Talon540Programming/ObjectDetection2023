@@ -149,9 +149,9 @@ if __name__ == "__main__":
                 
                 model.process_predictions(pred[0], full_image, pad)
                 try:
-                    coords = pred[0][0][0:4]
+                    coords = list(pred[0][0][0:4])
                     print("List 0 0 04", coords)
-                    box = model.get_scaled_coords(list(coords[0:3], coords[2:]), np.array(image), (0,0))
+                    box = model.get_scaled_coords([coords[0:3], coords[2:]], np.array(image), (0,0))
                     print("box", box)
                 except Exception as e:
                     print("nothing detected", e)
