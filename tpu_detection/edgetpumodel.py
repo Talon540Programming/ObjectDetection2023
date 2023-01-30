@@ -158,9 +158,7 @@ class EdgeTPUModel:
         self.interpreter.invoke()
         
         # Scale output
-        output = (common.output_tensor(self.interpreter, 0).astype('float32') - self.output_zero) * self.output_scale
-        print(output.shape)
-        result = (output) 
+        result = (common.output_tensor(self.interpreter, 0).astype('float32') - self.output_zero) * self.output_scale
         self.inference_time = time.time() - tstart
         
         if with_nms:
