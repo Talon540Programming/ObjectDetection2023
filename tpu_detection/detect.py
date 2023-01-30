@@ -149,7 +149,7 @@ if __name__ == "__main__":
                 
                 model.process_predictions(pred[0], full_image, pad)
 
-                box = model.get_scaled_coords()
+                # box = model.get_scaled_coords()
                 
                 tinference, tnms = model.get_last_inference_time()
                 logger.info("Frame done in {}".format(tinference+tnms))
