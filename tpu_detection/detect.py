@@ -149,7 +149,7 @@ if __name__ == "__main__":
                 
                 model.process_predictions(pred[0], full_image, pad)
                 try:
-                    print("List 0 0 04", list(pred[0][0])[0:4])
+                    print("List 0 0 04", type(list(pred[0][0])[0:4]))
                     box = model.get_scaled_coords(list(pred[0][0])[0:4], np.array(image), (0,0))
                     print("box", box)
                 except:
