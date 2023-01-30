@@ -152,8 +152,8 @@ if __name__ == "__main__":
                     print("List 0 0 04", type(list(pred[0][0])[0:4]))
                     box = model.get_scaled_coords(list(pred[0][0])[0:4], np.array(image), (0,0))
                     print("box", box)
-                except:
-                    print("nothing detected")
+                except Exception as e:
+                    print("nothing detected", e)
                 
                 tinference, tnms = model.get_last_inference_time()
                 logger.info("Frame done in {}".format(tinference+tnms))
