@@ -2,7 +2,7 @@ import cv2,socket,pickle,os
 import numpy as np
 s=socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 s.setsockopt(socket.SOL_SOCKET,socket.SO_SNDBUF,1000000)
-server_ip = "10.85.1.59"
+server_ip = "10.171.50.31"
 server_port = 6666
 
 cap = cv2.VideoCapture(0)
