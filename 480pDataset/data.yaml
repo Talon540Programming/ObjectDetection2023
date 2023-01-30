@@ -1,0 +1,14 @@
+path: ../480pDataset
+train: train/images
+val: valid/images
+test: test/images
+
+nc: 2
+names: ['cone', 'cube']
+
+roboflow:
+  workspace: talon540
+  project:  objectdetection-pmm7c
+  version: 6
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/talon540/objectdetection-pmm7c/dataset/6

@@ -16,6 +16,6 @@ while True:
     data = cv2.imdecode(data, cv2.IMREAD_COLOR)
     print('decoded')
     cv2.imshow('server', data) #to open image
-    if cv2.waitKey(10) == 13:
+    if cv2.waitKey(10) == 'q':
         break
 cv2.destroyAllWindows()

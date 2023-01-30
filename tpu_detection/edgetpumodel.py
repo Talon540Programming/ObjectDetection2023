@@ -219,6 +219,18 @@ class EdgeTPUModel:
             out.append((x1, y1, x2, y2))
         
         return np.array(out).astype(int)
+    
+    def get_corner_coords(self, xywh):
+        x, y, w, h = xywh
+        im_w, im_h = self.input_size
+        x *= im_w
+        y *= im_h
+        w *= im_w
+        h *= im_h
+
+        corner1 = (max(0, int(x-(w/2))), max(0, int(y-(h/2))))
+        corner2 = (min(im_w, int(x+(w/2))), min(im_h, int(y+(h/2))))
+        return (corner1, corner2)
 
     def process_predictions(self, det, output_image, pad, output_path="detection.jpg", save_img=True, save_txt=True, hide_labels=False, hide_conf=False):
         """
