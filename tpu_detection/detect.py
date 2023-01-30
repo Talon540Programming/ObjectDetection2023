@@ -148,10 +148,12 @@ if __name__ == "__main__":
                 print(pred)
                 
                 model.process_predictions(pred[0], full_image, pad)
-                if pred[0].shape[0] > 0:
+                try:
                     print(list(pred[0][0])[0:4])
                     box = model.get_scaled_coords(list(pred[0][0])[0:4], np.array(image), (0,0))
                     print(box)
+                except:
+                    print("nothing detected")
                 
                 tinference, tnms = model.get_last_inference_time()
                 logger.info("Frame done in {}".format(tinference+tnms))
