@@ -8,7 +8,7 @@ server_port = 6666
 cap = cv2.VideoCapture(0)
 while True:
 	ret,photo = cap.read()
-	cv2.imshow('streaming',photo)
+	# cv2.imshow('streaming',photo)
 	ret,buffer = cv2.imencode(".jpg",photo,[int(cv2.IMWRITE_JPEG_QUALITY),30])
 	x_as_bytes = pickle.dumps(buffer)
 	s.sendto((x_as_bytes),(server_ip,server_port))

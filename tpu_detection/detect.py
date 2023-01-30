@@ -11,6 +11,8 @@ import numpy as np
 from tqdm import tqdm
 import cv2
 import yaml
+import socket
+import pickle
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -126,6 +128,11 @@ if __name__ == "__main__":
     elif args.stream:
         logger.info("Opening stream on device: {}".format(args.device))
         
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.setsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF, 1000000)
+        server_ip = "10.85.1.59"
+        server_port = 6666
+
         cam = cv2.VideoCapture(args.device)
         
         while True:
@@ -138,6 +145,7 @@ if __name__ == "__main__":
             else:
                 full_image, net_image, pad = get_image_tensor(image, input_size[0])
                 pred = model.forward(net_image)
+                print(pred)
                 
                 model.process_predictions(pred[0], full_image, pad)
                 
